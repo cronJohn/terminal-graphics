@@ -31,7 +31,7 @@ install_deps_if_not_installed() {
 }
 
 draw_ascii(){
-    eval "$(which gif-for-cli) "$options" "--cols $(tput cols)" "--rows $(tput lines)" -l 1 'party parrot'"
+    eval "$(which gif-for-cli) "$1" "$options" "--cols $(tput cols)" "--rows $(tput lines)" 'party parrot' &"
 }
 
 run_cmd(){
@@ -57,7 +57,16 @@ IFS=' '
 
 # Main execution
 install_deps_if_not_installed
-run_cmd
-draw_ascii
 
+run_cmd
+CMD_ID=$!
+
+draw_ascii
+ASCII_ID=$!
+
+while kill -0 "$CMD_ID" >/dev/null 2>&1; do
+    :
+done
+
+kill $ASCII_ID # Stop animation when done
 

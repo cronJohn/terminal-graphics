@@ -12,9 +12,5 @@ Let's you display an image or video graphic while your cli program is loading
 `main.sh <options>,<command>`
 
 ---
-# Issues
-- The gif keeps playing even when the command ends
-
----
 # Credit
 - Uses Google's 'gif-for-cli' program: https://github.com/google/gif-for-cli
